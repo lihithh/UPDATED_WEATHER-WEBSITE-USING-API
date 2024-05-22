@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Weather Acc</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+      a:hover {
+        color:blueviolet;
+      }
+    </style>
+    </head>
+
+
+<body>
+ 
+ 
+ 
+ 
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a  class="navbar-brand" href="#">Weather Acc</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          
+            </a>
+
+        </ul>
+        <form class="d-flex" role="search">
+          <input id="city" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit" id="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+  <div class="container">
+    <h1 class="my-4 text-center text-dark "><u>Weather for <span id="cityName"></u></span></h1>
+    <main>
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col"> 
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Temperature</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"><span id="temp2"></span><small class="text-body-secondary fw-light"> °C</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li><b>Temperature is <span id="temp"></span></b></span></li>
+                <li><b>Min Tempearture is <span id="min_temp"></b></span></li>
+                <li><b>Max Temperature is <span id="max_temp"></b></span></li>
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Humidity Info</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"><span id="humidity2"></span><small class="text-body-secondary fw-light"> %</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li><b>Humidity is <span id="humidity"></b></span></li>
+                <li><b>Sunrise Time is <span id="sunrise"></b></span></li>
+                <li><b>Feels Like is <span id="feels_like"></b></span></li>
+              
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Wind Info</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"><span id="wind_speed2"></span><small class="text-body-secondary fw-light"> km/hr</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li><b>Wind Speed is <span id="wind_speed"></b></span></li>
+                <li><b>Wind Degrees is <span id="wind_degrees"></b></span></li>
+                <li><b>Sunset Time is <span id="sunset"></b></span></li>
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cunt">
+        <button type ="submit" class="btn" onclick="openPopup()">DETAILS OF WEATHER</button>
+        <div class="popup" id="popup">
+          <h2 style  text-color : #87CEEB> WEATHER INFO !!</h2>
+          <p id = "popup-message">Enjoy your pleasent day!</p>
+          <button type="button" onclick="closePopup()">OK</button>
+        </div>
+      </div>
+      
+      <script>
+        
+        const popup =document.getElementById("popup");
+
+        function openPopup(){
+          const current_temperature = document.getElementById("temp").innerHTML;
+          const current_windspeed = document.getElementById("wind_speed").innerHTML;
+          let message = "";
+          if(current_temperature >= 14 && current_temperature <= 19){
+            message = "This temperature is suitable for cultivation of wheat";
+          }
+          else if(current_temperature > 34){
+            message = "VERY HOT TO GO OUT !! STAY AT HOME";
+          }
+          else if(current_temperature <= 34 && current_temperature > 28){
+            message ="ENJOY A SUNNY TROPICAL CLIMATE";
+          }
+          else if(current_temperature <= 28 && current_temperature > 19){
+            message ="GOOD CLIMATE FOR BEE FARMING AND CULTIVATION OF TOMATOES";
+          }
+          else if(current_temperature < 20 && current_temperature > 15){
+            message = "The climate is slowly getting cold"
+          }
+          else if(current_temperature < 15 && current_temperature > 10){
+            message = "STAY WARM USING LEATHER CLOTHES"
+          }
+          else if(current_temperature < 10 && current_temperature > 1 && current_windspeed > 15){
+            message = "BETTER STAY AT HOME"
+          }
+          else if(current_temperature > 1 && current_windspeed > 20){
+            message = "CAUTION : SNOW STORM !! EVACUATE AS SOON AS POSSIBLE!!";
+          }
+          else if(current_temperature < -30){
+            message =" HUMANS CAN'T SURVIVE HERE "
+          }
+          document.getElementById("popup-message").innerHTML=message;
+          popup.classList.add("open-popup");
+        }
+
+        function closePopup(){
+          popup.classList.remove("open-popup")
+        }
+      </script>
+
+      <h2 class="my-4 text-center text-dark" text="underline"><u>Weather of other common places</u></h2>
+      <div class="container">
+      <div class="table-responsive ">>
+        <table class="table text-center table-bordered border-dark text-dark">
+          <thead class="table-dark">
+            <tr>
+              <th style="width: 34%;"></th>
+              <th style="width: 22%;"> Feels_like</th>
+              <th style="width: 22%;"> Humidity</th>
+              <th style="width: 22%;"> Max_temp</th>
+              <th style="width: 22%;"> Min_temp</th>
+              <th style="width: 22%;"> Sunrise</th>
+              <th style="width: 22%;"> Sunset</th>
+              <th style="width: 22%;"> Temp</th>
+              <th style="width: 22%;"> Wind_degrees</th>
+              <th style="width: 22%;"> Wind_speed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="text-start">Bangalore</th>
+
+              <td id="Feels_like_V"></td>
+              <td id="Humidity_V"></td>
+              <td id="Max_temp_V"></td>
+              <td id="Min_temp_V"></td>
+              <td id="Sunrise_V"></td>
+              <td id="Sunset_V"></td>
+              <td id="Temp_V"></td>
+              <td id="Wind_degrees_V"></td>
+              <td id="Wind_speed_V"></td>
+
+
+
+
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Kerala</th>
+              
+              <td id="Feels_like_K"></td>
+              <td id="Humidity_K"></td>
+              <td id="Max_temp_K"></td>
+              <td id="Min_temp_K"></td>
+              <td id="Sunrise_K"></td>
+              <td id="Sunset_K"></td>
+              <td id="Temp_K"></td>
+              <td id="Wind_degrees_K"></td>
+              <td id="Wind_speed_K"></td>
+
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+              <th scope="row" class="text-start">Boston</th>
+              
+              <td id="Feels_like_B"></td>
+              <td id="Humidity_B"></td>
+              <td id="Max_temp_B"></td>
+              <td id="Min_temp_B"></td>
+              <td id="Sunrise_B"></td>
+              <td id="Sunset_B"></td>
+              <td id="Temp_B"></td>
+              <td id="Wind_degrees_B"></td>
+              <td id="Wind_speed_B"></td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Kolkata</th>
+             
+              <td id="Feels_like_A"></td>
+              <td id="Humidity_A"></td>
+              <td id="Max_temp_A"></td>
+              <td id="Min_temp_A"></td>
+              <td id="Sunrise_A"></td>
+              <td id="Sunset_A"></td>
+              <td id="Temp_A"></td>
+              <td id="Wind_degrees_A"></td>
+              <td id="Wind_speed_A"></td>
+            </tr>
+            
+
+          </tbody>
+          
+        </table>
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+          <div class="row">
+            <div class="col-12 col-md">
+              
+            </div>
+            <div class="col-6 col-md">
+              <h5>Features:</h5>
+              <ul class="list-unstyled text-small text-dark">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Shows climatic condition</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random cities weather</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Easy use</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">User friendly</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md">
+              <h5>Contacts:</h5>
+              <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Contact us by</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Gmail: weatheracc.gmail.in</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Queries: +91 98760 66787</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Social Media: Weather_acc99</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md">
+              <h5>About:</h5>
+              <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
+              </ul>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
